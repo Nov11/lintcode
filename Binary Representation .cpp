@@ -1,5 +1,5 @@
 class Solution {
-	string binaryAdd(string a, string b) {
+	string binaryAdd(const string& a, const string& b) {
 		//a and b is binary form and are not negative number
 		if (a.empty() || b.empty()) { return "0"; }
 		if (a == "0") { return b; }
@@ -23,7 +23,7 @@ class Solution {
 		return result;
 	}
 
-	string binaryMul10(string s) {
+	string binaryMul10(const string& s) {
 		if (s.empty()) {
 			return "0";
 		}
@@ -47,7 +47,7 @@ class Solution {
 		{ 8,"1000" },
 		{ 9,"1001" }
 	};
-	string integerToBinary(string s) {
+	string integerToBinary(const string& s) {
 		if (s.empty()) { return "0"; }// for .XXX  integer is "", return 0 here
 		if (s.size() == 1) { return m[s[0] - '0']; }
 		string result{ "0" };
@@ -61,7 +61,7 @@ class Solution {
 
 		return result;
 	}
-	string tenBaseDoubleValue(string s) {
+	string tenBaseDoubleValue(const string& s) {
 		if (s.empty()) { return ""; }
 		int carry = 0;
 		string result;
@@ -79,7 +79,7 @@ class Solution {
 		return result;
 	}
 
-	bool isZero(string s) {
+	bool isZero(const string& s) {
 		if (s.empty()) {
 			return false;
 		}
