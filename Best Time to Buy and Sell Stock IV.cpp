@@ -29,7 +29,11 @@ public:
 			for (int i = 1; i < len; i++) {
 
 				int diff = prices[i] - prices[i - 1];
-				l = max(l + diff, max((i - 2 >= 0 ? global[i - 2] + diff : 0), global[i - 1]));
+				l = max(
+					l + diff
+					, max((i - 2 >= 0 ? global[i - 2] : 0) + diff, global[i - 1]
+					)
+				);
 				g[i] = max(g[i - 1], l);
 			}
 			swap(g, global);
