@@ -1,0 +1,48 @@
+class Solution {
+    bool isValid(const string& s){
+        int cnt = 0;
+        for(auto c : s){
+            if(c != '(' and c != ')'){continue;}
+            if(c == '('){cnt++;}
+            else{
+                cnt--;
+                if(cnt < 0){
+                    return false;
+                }
+            }
+        }
+        return cnt == 0;
+    }
+public:
+    /**
+     * @param s: The input string
+     * @return: all possible results
+     */
+    vector<string> removeInvalidParentheses(string &s) {
+        // Write your code here
+        unordered_set<string> us{{s}};
+        queue<string> q{{s}};
+        vector<string> result;
+        while(!q.empty()){
+            auto v = q.front();
+            q.pop();
+            if(isValid(v)){
+                if(result.empty() || result[0].size() == v.size()){
+                    result.push_back(v);
+                    continue;
+                }
+                
+                break;
+            }
+            for(int i = 0; i < v.size(); i++){
+                if(v[i] != '(' and v[i] != ')'){continue;}
+                string tmp = v.substr(0, i) + v.substr(i + 1);
+                if(us.find(tmp) == us.end()){
+                    us.insert(tmp);
+                    q.push(tmp);
+                }
+            }
+        }
+        return result;
+    }
+};
